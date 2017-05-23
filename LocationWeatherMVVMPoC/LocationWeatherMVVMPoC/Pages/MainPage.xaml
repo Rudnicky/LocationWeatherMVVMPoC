@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="LocationWeatherMVVMPoC.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:LocationWeatherMVVMPoC"
+    BackgroundColor="White">
+    <Grid>
+        <StackLayout
+            Margin="20,100,20,20"
+            HorizontalOptions="FillAndExpand"
+            Spacing="10">
+            <Label Style="{StaticResource LabelHeaderBoldStyle}" Text="Weather PoC" />
+            <local:ButtonExt
+                Margin="0,100,0,0"
+                Style="{StaticResource ButtonMenuStyle}"
+                Text="Enter location manually">
+                <Grid.Behaviors>
+                    <local:EventToCommandBehavior Command="{Binding OnEnterLocationManuallyButtonClickedCommand}" EventName="Clicked" />
+                </Grid.Behaviors>
+            </local:ButtonExt>
+            <local:ButtonExt Style="{StaticResource ButtonMenuStyle}" Text="Obtain location automatically">
+                <Grid.Behaviors>
+                    <local:EventToCommandBehavior Command="{Binding OnEnterLocationAutomaticallyButtonClickedCommand}" EventName="Clicked" />
+                </Grid.Behaviors>
+            </local:ButtonExt>
+            <local:ButtonExt Style="{StaticResource ButtonMenuStyle}" Text="Exit Application">
+                <Grid.Behaviors>
+                    <local:EventToCommandBehavior Command="{Binding OnExitApplicationButtonClickedCommand}" EventName="Clicked" />
+                </Grid.Behaviors>
+            </local:ButtonExt>
+        </StackLayout>
+    </Grid>
+</ContentPage>

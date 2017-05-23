@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application
+    x:Class="LocationWeatherMVVMPoC.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:LocationWeatherMVVMPoC">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="SoftBlue">#6666FF</Color>
+            <Color x:Key="Black">#000000</Color>
+            <Style x:Key="LabelHeaderBoldStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource Black}" />
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style x:Key="LabelBoldStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource Black}" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style x:Key="LabelNormalStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource Black}" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style x:Key="GeneralButtonStyle" TargetType="local:ButtonExt">
+                <Setter Property="BorderColor" Value="Transparent" />
+                <Setter Property="BorderRadius" Value="45" />
+                <Setter Property="BorderWidth" Value="0" />
+                <Style.Triggers>
+                    <Trigger TargetType="local:ButtonExt" Property="IsEnabled" Value="False">
+                        <Setter Property="ButtonColor" Value="{StaticResource Black}" />
+                        <Setter Property="TextColor" Value="{StaticResource SoftBlue}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style
+                x:Key="ButtonNormalStyle"
+                BasedOn="{StaticResource GeneralButtonStyle}"
+                TargetType="local:ButtonExt">
+                <Setter Property="ButtonColor" Value="{StaticResource SoftBlue}" />
+                <Setter Property="TextColor" Value="{StaticResource Black}" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="WidthRequest" Value="300" />
+            </Style>
+            <Style
+                x:Key="ButtonMenuStyle"
+                BasedOn="{StaticResource GeneralButtonStyle}"
+                TargetType="local:ButtonExt">
+                <Setter Property="ButtonColor" Value="{StaticResource SoftBlue}" />
+                <Setter Property="TextColor" Value="{StaticResource Black}" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="WidthRequest" Value="350" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

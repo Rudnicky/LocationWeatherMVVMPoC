@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="LocationWeatherMVVMPoC.LocationAutomaticallyPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:LocationWeatherMVVMPoC"
+    BackgroundColor="White">
+    <Grid>
+        <StackLayout Margin="20,100,20,20" Spacing="10">
+            <Label Style="{StaticResource LabelHeaderBoldStyle}" Text="Weather PoC" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="5*" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Style="{StaticResource LabelBoldStyle}"
+                    Text="Longitude" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Style="{StaticResource LabelBoldStyle}"
+                    Text="Latitude" />
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Style="{StaticResource LabelNormalStyle}"
+                    Text="{Binding Longitude}" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Style="{StaticResource LabelNormalStyle}"
+                    Text="{Binding Latitude}" />
+            </Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="5*" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.Column="0"
+                    Style="{StaticResource LabelBoldStyle}"
+                    Text="Temperature:" />
+                <Label
+                    Grid.Column="1"
+                    Style="{StaticResource LabelNormalStyle}"
+                    Text="{Binding Temperature}" />
+            </Grid>
+            <local:ButtonExt Style="{StaticResource ButtonNormalStyle}" Text="Obtain data">
+                <Grid.Behaviors>
+                    <local:EventToCommandBehavior Command="{Binding OnObtainButtonClickedCommand}" EventName="Clicked" />
+                </Grid.Behaviors>
+            </local:ButtonExt>
+            <local:ButtonExt Style="{StaticResource ButtonNormalStyle}" Text="Go Back">
+                <Grid.Behaviors>
+                    <local:EventToCommandBehavior Command="{Binding GoBackButtonClickedCommand}" EventName="Clicked" />
+                </Grid.Behaviors>
+            </local:ButtonExt>
+        </StackLayout>
+        <ActivityIndicator
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            Color="Black" />
+    </Grid>
+</ContentPage>

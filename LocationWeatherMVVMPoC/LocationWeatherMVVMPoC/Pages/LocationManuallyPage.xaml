@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="LocationWeatherMVVMPoC.LocationManuallyPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:LocationWeatherMVVMPoC"
+    BackgroundColor="White">
+    <Grid>
+        <StackLayout Margin="20,100,20,20" Spacing="20">
+            <Label Style="{StaticResource LabelHeaderBoldStyle}" Text="Weather PoC" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="5*" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Style="{StaticResource LabelBoldStyle}"
+                    Text="Longitude" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Style="{StaticResource LabelBoldStyle}"
+                    Text="Latitude" />
+                <local:BorderedEntry
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    IsEnabled="{Binding IsBorderedEntryEnabled}"
+                    Placeholder="Enter data"
+                    Text="{Binding Longitude, Mode=TwoWay}">
+                    <ContentView.Behaviors>
+                        <local:EventToCommandBehavior Command="{Binding LongitudeChangedCommand}" EventName="TextChanged" />
+                        <local:EventToCommandBehavior Command="{Binding LongitudeEditingEndedCommand}" EventName="Unfocused" />
+                    </ContentView.Behaviors>
+                </local:BorderedEntry>
+                <local:BorderedEntry
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    IsEnabled="{Binding IsBorderedEntryEnabled}"
+                    Placeholder="Enter data"
+                    Text="{Binding Latitude, Mode=TwoWay}">
+                    <ContentView.Behaviors>
+                        <local:EventToCommandBehavior Command="{Binding LatitudeChangedCommand}" EventName="TextChanged" />
+                        <local:EventToCommandBehavior Command="{Binding LatitudeEditingEndedCommand}" EventName="Unfocused" />
+                    </ContentView.Behaviors>
+                </local:BorderedEntry>
+            </Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="5*" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Style="{StaticResource LabelBoldStyle}"
+                    Text="Temperature:" />
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Style="{StaticResource LabelNormalStyle}"
+                    Text="{Binding Temperature}" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    IsVisible="{Binding IsWarningReadVisible}"
+                    Style="{StaticResource LabelBoldStyle}"
+                    Text="Warning:" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    IsVisible="{Binding IsWarningMessageVisible}"
+                    Style="{StaticResource LabelNormalStyle}"
+                    Text="{Binding Warning}"
+                    VerticalOptions="Center" />
+            </Grid>
+            <StackLayout Spacing="10">
+                <local:ButtonExt Style="{StaticResource ButtonNormalStyle}" Text="Search">
+                    <Grid.Behaviors>
+                        <local:EventToCommandBehavior Command="{Binding OnSearchButtonClickedCommand}" EventName="Clicked" />
+                    </Grid.Behaviors>
+                </local:ButtonExt>
+                <local:ButtonExt Style="{StaticResource ButtonNormalStyle}" Text="Go Back">
+                    <Grid.Behaviors>
+                        <local:EventToCommandBehavior Command="{Binding GoBackButtonClickedCommand}" EventName="Clicked" />
+                    </Grid.Behaviors>
+                </local:ButtonExt>
+            </StackLayout>
+        </StackLayout>
+        <ActivityIndicator
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            Color="Black" />
+    </Grid>
+</ContentPage>
