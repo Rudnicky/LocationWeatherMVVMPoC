@@ -7,7 +7,6 @@ namespace LocationWeatherMVVMPoC
 {
     public class WeatherService
     {
-        //const string WeatherCoordinatesUri = "http://api.openweathermap.org/data/2.5/weather?lat={0}&lon={1}&units={2}&appid=1feb448803cf277d74e3275e1fbeaa15";
         const string WeatherCoordinatesUri = "http://api.openweathermap.org/data/2.5/weather?lat={0}&lon={1}&units={2}&appid=a5b8d828e51593f93f11f2ba4bccba7a";
         public enum Units
         {
@@ -27,7 +26,6 @@ namespace LocationWeatherMVVMPoC
 
                 return DeserializeObject<WeatherRoot>(json);
             }
-
         }
     }
 }

@@ -12,7 +12,8 @@ namespace LocationWeatherMVVMPoC
     {
         #region Fields & Properties
         WeatherService WeatherService { get; } = new WeatherService();
-
+        EnterDataValidator dataValidator;
+        public bool CanExecuteDataChangedCommand { get; set; } = true;
         private bool isBorderedEntryEnabled;
         public bool IsBorderedEntryEnabled
         {
@@ -93,8 +94,8 @@ namespace LocationWeatherMVVMPoC
                 {
                     longitudeChangedCommand = new Command<TextChangedEventArgs>(OnLongitudeTextChanged, (args) =>
                     {
-                       var canExecute = CanExecutePayRefNumberChangedCommand;
-                       CanExecutePayRefNumberChangedCommand = true;
+                       var canExecute = CanExecuteDataChangedCommand;
+                       CanExecuteDataChangedCommand = true;
                        return canExecute;
                     });
                 }
@@ -136,8 +137,8 @@ namespace LocationWeatherMVVMPoC
                 {
                     latitudeChangedCommand = new Command<TextChangedEventArgs>(OnLatitudeTextChanged, (args) =>
                     {
-                        var canExecute = CanExecutePayRefNumberChangedCommand;
-                        CanExecutePayRefNumberChangedCommand = true;
+                        var canExecute = CanExecuteDataChangedCommand;
+                        CanExecuteDataChangedCommand = true;
                         return canExecute;
                     });
                 }
@@ -175,6 +176,7 @@ namespace LocationWeatherMVVMPoC
         public LocationManuallyPageViewModel(INavigation navigation) : base(navigation)
         {
             IsBorderedEntryEnabled = true;
+            dataValidator = new EnterDataValidator();
         }
         #endregion
 
@@ -227,7 +229,19 @@ namespace LocationWeatherMVVMPoC
         private void OnLongitudeEditingEnded(object longitude)
         {
             var tmp = longitude as string;
-            Debug.WriteLine(tmp);
+            dataValidator.ValidateData(tmp, (isValid, validatedValue) =>
+            {
+                if (!isValid)
+                {
+                    CanExecuteDataChangedCommand = false;
+                    Longitude = validatedValue;
+                    return;
+                }
+                else
+                {
+                    return;
+                }
+            });
         }
 
         private void OnLatitudeTextChanged(TextChangedEventArgs textChangedArgs)
@@ -240,7 +254,19 @@ namespace LocationWeatherMVVMPoC
         private void OnLatitudeEditingEnded(object latitude)
         {
             var tmp = latitude as string;
-            Debug.WriteLine(tmp);
+            dataValidator.ValidateData(tmp, (isValid, validatedValue) =>
+            {
+                if (!isValid)
+                {
+                    CanExecuteDataChangedCommand = false;
+                    Latitude = validatedValue;
+                    return;
+                }
+                else
+                {
+                    return;
+                }
+            });
         }
         #endregion
 

@@ -28,6 +28,7 @@
                     Style="{StaticResource LabelBoldStyle}"
                     Text="Latitude" />
                 <local:BorderedEntry
+                    x:Name="LongitudeEntry"
                     Grid.Row="0"
                     Grid.Column="1"
                     IsEnabled="{Binding IsBorderedEntryEnabled}"
@@ -35,10 +36,14 @@
                     Text="{Binding Longitude, Mode=TwoWay}">
                     <ContentView.Behaviors>
                         <local:EventToCommandBehavior Command="{Binding LongitudeChangedCommand}" EventName="TextChanged" />
-                        <local:EventToCommandBehavior Command="{Binding LongitudeEditingEndedCommand}" EventName="Unfocused" />
+                        <local:EventToCommandBehavior
+                            Command="{Binding LongitudeEditingEndedCommand}"
+                            CommandParameter="{Binding Source={x:Reference LongitudeEntry}, Path=Text, Mode=TwoWay}"
+                            EventName="Unfocused" />
                     </ContentView.Behaviors>
                 </local:BorderedEntry>
                 <local:BorderedEntry
+                    x:Name="LatitudeEntry"
                     Grid.Row="1"
                     Grid.Column="1"
                     IsEnabled="{Binding IsBorderedEntryEnabled}"
@@ -46,7 +51,10 @@
                     Text="{Binding Latitude, Mode=TwoWay}">
                     <ContentView.Behaviors>
                         <local:EventToCommandBehavior Command="{Binding LatitudeChangedCommand}" EventName="TextChanged" />
-                        <local:EventToCommandBehavior Command="{Binding LatitudeEditingEndedCommand}" EventName="Unfocused" />
+                        <local:EventToCommandBehavior
+                            Command="{Binding LatitudeEditingEndedCommand}"
+                            CommandParameter="{Binding Source={x:Reference LatitudeEntry}, Path=Text, Mode=TwoWay}"
+                            EventName="Unfocused" />
                     </ContentView.Behaviors>
                 </local:BorderedEntry>
             </Grid>

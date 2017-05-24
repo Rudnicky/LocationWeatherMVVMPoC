@@ -57,6 +57,7 @@
       <DependentUpon>LocationManuallyPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validators\EnterDataValidator.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\LocationAutomaticallyPageViewModel.cs" />
     <Compile Include="ViewModels\LocationManuallyPageViewModel.cs" />
